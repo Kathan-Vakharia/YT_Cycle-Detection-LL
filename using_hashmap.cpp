@@ -6,11 +6,11 @@ using namespace std;
 -Space:O(n) for hashmap
 */
 /* A note about 'count(Key)'
-*Searches the container for elements whose key is k and returns 
+*Searches the container for elements whose value is k and returns 
 *  the number of elements found
-*Because unordered_map containers do not allow for duplicate keys,
+*Because unordered_set containers do not allow for duplicate values,
 *   this means that the function actually returns 1 if an element with 
-*   that key exists in the container, and zero otherwise.
+*   that value exists in the container, and zero otherwise.
 */
 class Solution
 {
@@ -18,7 +18,7 @@ public:
     bool hasCycle(ListNode *head)
     {
 
-        unordered_map<ListNode *, int> nodes_seen;
+        unordered_set<ListNode *> nodes_seen;
 
         while (head != nullptr)
         {
@@ -27,7 +27,7 @@ public:
                 return true;
             }
 
-            nodes_seen[head] = head->val;
+            nodes_seen.insert(head);
             head = head->next;
         }
         return false;
